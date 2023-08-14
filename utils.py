@@ -1,7 +1,6 @@
 import json
 import os
-
-PATH = os.path.join('data', 'operations.json')
+from operator import itemgetter
 
 
 def load_json(file_name):
@@ -21,3 +20,18 @@ def load_json(file_name):
     return new_dict
 
 
+def get_list_executed(operation_list):
+    """
+    Получаем последние 5 выполненных операций
+    :param operation_list: массив операций
+    :return: последние 5 выполненных операций
+    """
+
+    exucuted_list = []
+    for operation in operation_list:
+        if operation['state'] == "EXECUTED":
+            exucuted_list.append(operation)
+
+    newlist = sorted(exucuted_list, key=itemgetter('date'), reverse=True)
+
+    return newlist[0: 5]
