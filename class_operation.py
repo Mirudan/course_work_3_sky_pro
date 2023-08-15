@@ -2,20 +2,20 @@ from datetime import datetime
 
 
 class Operation:
-    def __init__(self, date, description, to_op, amount, currency, from_op=None):
+    def __init__(self, date, description, operation_to, amount, currency, operation_from=None):
         """
         инициализация класса
         :param date: дата перевода
         :param description: описание перевода
-        :param to_op: куда
+        :param operation_to: куда
         :param amount: сумма перевода
         :param currency: валюта
-        :param from_op: откуда
+        :param operation_from: откуда
         """
-        self.from_op = from_op
+        self.operation_from = operation_from
         self.currency = currency
         self.amount = amount
-        self.to_op = to_op
+        self.operation_to = operation_to
         self.description = description
         self.date = date
 
@@ -39,3 +39,25 @@ class Operation:
         old_date = datetime.strptime(self.date, '%Y-%m-%dT%H:%M:%S.%f')
         new_date = old_date.strftime('%d.%m.%Y')
         return new_date
+
+    def mask_from(self):
+        """
+        Маскирует номер карты или счета отправителя
+        :return: возвращает маскированный номер
+        """
+        name = ''
+        numbers = ''
+        # цикл, чтобы разделить карту\счет от номера
+        if self.operation_from is not None:
+            for letter in self.operation_from:
+                if letter.isdigit():
+                    numbers += letter
+                elif letter.isalpha():
+                    name += letter
+
+            if len(numbers) == 16:
+                return f'{name} {numbers[0:4]} {numbers[4:6]}** **** {numbers[-4:]}'
+            elif len(numbers) > 16:
+                return f'{name} **{numbers[-4:]}'
+        else:
+            return ''
