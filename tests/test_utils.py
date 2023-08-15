@@ -140,3 +140,9 @@ def test_get_list_executed(fixture_list_executed):
     list_test = utils.get_list_executed(fixture_list_executed)
     assert len(list_test) == 5
     assert list_test[0]['date'] > list_test[-1]['date']
+
+
+def test_get_list_class(fixture_list_executed):
+    list_test = utils.get_list_executed(fixture_list_executed)
+    assert len(utils.get_list_class(list_test)) == 5
+    assert utils.get_list_class(list_test)[0].date > utils.get_list_class(list_test)[4].date

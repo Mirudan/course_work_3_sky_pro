@@ -26,8 +26,8 @@ class Operation:
         """
         return f'Operation: дата перевода - {self.date}\n' \
                f'описание перевода - {self.description}\n' \
-               f'откуда - {self.from_op}\n' \
-               f'куда - {self.to_op}\n' \
+               f'откуда - {self.operation_from}\n' \
+               f'куда - {self.operation_to}\n' \
                f'сумма перевода - {self.amount}\n' \
                f'валюта - {self.currency}\n'
 
