@@ -61,3 +61,22 @@ class Operation:
                 return f'{name} **{numbers[-4:]}'
         else:
             return ''
+
+    def mask_to(self):
+        """
+        Маскирует номер карты или счета получателя
+        :return: возвращает маскированный номер
+        """
+        name = ''
+        numbers = ''
+        # цикл, чтобы разделить карту\счет от номера
+        for letter in self.operation_to:
+            if letter.isdigit():
+                numbers += letter
+            elif letter.isalpha():
+                name += letter
+
+        if len(numbers) == 16:
+            return f'{name} {numbers[0:4]} {numbers[4:6]}** **** {numbers[-4:]}'
+        elif len(numbers) > 16:
+            return f'{name} **{numbers[-4:]}'
