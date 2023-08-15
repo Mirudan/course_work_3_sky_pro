@@ -39,7 +39,7 @@ Visa Platinum 7000 79** **** 6361 -> Счет **9638
 
 Файл со списком операций, совершенных клиентом банка:
 
-[operations.json](...)
+[operations.json](https://github.com/Mirudan/course_work_3_sky_pro/blob/main/data/operations.json)
 
 По каждой операции есть следующие данные:
 
