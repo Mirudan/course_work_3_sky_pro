@@ -1,5 +1,4 @@
 import os
-from operator import itemgetter
 import pytest
 import utils
 
